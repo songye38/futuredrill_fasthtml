@@ -1,7 +1,6 @@
 from fasthtml.common import *
 from random import choice
 
-# Google Fonts에서 서체 링크 추가
 link = Link(href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Poor+Story&display=swap", rel="stylesheet")
 preconnect1 = Link(rel="preconnect", href="https://fonts.googleapis.com")
 preconnect2 = Link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin="true")
@@ -87,14 +86,16 @@ def get():
                 P('우리의 서비스는 경증 치매를 앓고 계신 분들이 자신만의 이야기나 추억을 음성으로 남길 수 있도록 돕습니다.', cls='description'),
                 P('쉽고 간편한 인터페이스로 누구나 편안하게 사용하실 수 있습니다.', cls='description'),
                 P('모든 기억을 기록하고, 오랫동안 간직하세요.', cls='description'),
-                A("알림 신청하기", href="#", cls="cta-button"))
-            
-                # Body(Div('인생에서 가장 소중했던 기억은 무엇인가요?', cls='question')))
+                Form(
+                    Button("알림 받기", cls="cta-button alert-button", id="alert-track-button"),
+                    action="#", method="post"  # action은 "#"로 설정하여 실제 폼 전송을 방지
+                ))
 
     elif version == "B":
         return (Title("퓨쳐드릴 프로토타입 B 페이지"), 
                 Main(H3('샘 (버전 B)'), cls="container"),
-                Body(Div('가장 행복했던 순간은 언제였나요?', cls='myclass')))
+                Body(Div('가장 행복했던 순간은 언제였나요?', cls='myclass')),
+                Img(src=image_url, alt="샘 이미지", cls="my-image-class"))
 
 
 # A/B 테스트를 위한 버전 정의
@@ -104,8 +105,4 @@ def get():
                 Main(H3('안녕하세요 (버전 B)'), cls="container"))
 
 
-
-
-# Form(Input(type="text", name="data"),
-#         Button("제출"),
-#         action="/", method="post"))
+serve()
