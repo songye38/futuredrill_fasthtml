@@ -11,9 +11,7 @@ MAX_NAME_CHAR = 15
 MAX_MESSAGE_CHAR = 50
 TIMESTAMP_FMT = '%Y-%m-%d %I:%M:%S %p GMT'
 
-app,rt = fast_app(
-    hdrs=(Link(rel='icon',type='assets/x-icon',href='/assets/favicon.png'))
-)
+app,rt = fast_app()
 
 #supabase 초기화
 supabase = create_client(os.getenv('SUPABASE_URL'),os.getenv('SUPABASE_KEY'))
